@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Item Management</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Chart.js for visualizations -->
+</head>
+<body>
+    <div class="container">
+    <header>
+        <h1>The Eco Wardrobe: Style that Cares</h1>
+        <nav>
+            <a href="#item-management">Item Management</a>
+            <a href="#community-exchange">Community Exchange 🔄</a>
+            <a href="#style-inspiration">Style Inspiration 💡</a>
+            <a href="#usage-analytics">Usage Analytics 📊</a>
+        </nav>
+    </header>
+    
+    <main>
+        <section id="item-management">
+            <h2>Item Management</h2>
+            <form id="add-item-form">
+                <div class="form-group">
+                    <label for="item-name">Item Name</label>
+                    <input type="text" id="item-name" placeholder="Item Name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="category">Category</label>
+                    <select id="category" required>
+                        <option value="Clothing">Clothing</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="condition">Condition</label>
+                    <select id="condition" required>
+                        <option value="New">New</option>
+                        <option value="Used">Used</option>
+                        <option value="Damaged">Damaged</option>
+                    </select>
+                </div>
+        
+                <div class="form-group">
+                    <label for="purchase-date">When Purchased</label>
+                    <input type="date" id="purchase-date" required>
+                </div>
+                
+                <button type="submit">Add Item</button>
+            </form>
+        
+            <div class="table-container">
+                <table id="item-list">
+                    <thead>
+                        <tr>
+                            <th>Item Name</th>
+                            <th>Category</th>
+                            <th>Condition</th>
+                            <th>When Purchased</th>
+                        </tr>
+                    </thead>
+                    <tbody id="inventory-list">
+                        <!-- Added items will appear here -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        
+        
+        
+        <section id="community-exchange">
+            <h2>Community Exchange 🔄</h2>
+        
+            <form id="exchange-form">
+                <div class="form-group">
+                    <label for="exchange-item-name">Item Name</label>
+                    <input type="text" id="exchange-item-name" placeholder="Item Name" required>
+                </div>
+        
+                <div class="form-group">
+                    <label for="exchange-category">Category</label>
+                    <select id="exchange-category" required>
+                        <option value="Clothing">Clothing</option>
+                    </select>
+                </div>
+        
+                <div class="form-group">
+                    <label for="exchange-condition">Condition</label>
+                    <select id="exchange-condition" required>
+                        <option value="New">New</option>
+                        <option value="Used">Used</option>
+                        <option value="Damaged">Damaged</option>
+                    </select>
+                </div>
+        
+                <div class="form-group">
+                    <label for="exchange-type">Exchange Type</label>
+                    <select id="exchange-type" required>
+                        <option value="Trade">Trade</option>
+                        <option value="Donate">Donate</option>
+                        <option value="Lend">Lend</option>
+                    </select>
+                </div>
+        
+                <button type="submit">Add Exchange Item</button>
+            </form>
+        
+            <div class="exchange-items-container">
+                <h3>Available Items for Exchange</h3>
+                <ul id="exchange-items"></ul>
+            </div>
+        </section>
+
+        
+        
+        <section id="style-inspiration">
+            <h2>Style Inspiration 💡</h2>
+            
+            <div class="filter-container">
+                <label for="style-category">Filter by Category:</label>
+                <select id="style-category">
+                    <option value="all">All</option>
+                    <option value="casual">Casual</option>
+                    <option value="formal">Formal</option>
+                    <option value="seasonal">Seasonal</option>
+                    <option value="trending">Trending</option>
+                </select>
+            </div>
+        
+            <div id="styled-looks" class="styled-looks-grid"></div>
+        
+            <form id="upload-look-form">
+                <h3>Share Your Style</h3>
+                <div class="form-group">
+                    <label for="look-title">Look Title</label>
+                    <input type="text" id="look-title" required>
+                </div>
+                <div class="form-group">
+                    <label for="look-image">Upload Image</label>
+                    <input type="file" id="look-image" accept="image/*" required>
+                </div>
+                <button type="submit">Upload Look</button>
+                <button id="delete-look" type="button" class="hidden">Delete Look</button>
+            </form>
+        </section>
+        
+        
+        <section id="usage-analytics">
+            <h2>Usage Analytics 📊</h2>
+        
+            <div class="analytics-container">
+                <canvas id="usageChart" width="400" height="200"></canvas>
+                
+                <div class="usage-stats">
+                    <h3>Most Worn Items</h3>
+                    <div class="table-container">
+                        <table id="most-worn-list">
+                            <thead>
+                                <tr>
+                                    <th>Item Name</th>
+                                    <th>Worn Count</th>
+                                </tr>
+                            </thead>
+                            <tbody id="most-worn-body">
+                                <!-- Most worn items will appear here -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <ul id="most-worn"></ul>
+                    <h3>Least Worn Items</h3>
+                    <div class="table-container">
+                        <table id="least-worn-list">
+                            <thead>
+                                <tr>
+                                    <th>Item Name</th>
+                                    <th>Worn Count</th>
+                                </tr>
+                            </thead>
+                            <tbody id="least-worn-body">
+                                <!-- Least worn items will appear here -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <ul id="least-worn"></ul>
+                </div>
+            </div>
+        
+            <h3>Usage Suggestions</h3>
+            <div id="usage-suggestions"></div>
+        
+            <form id="log-outfit-form">
+                <h3>Log Your Outfit</h3>
+                <div class="form-group">
+                    <label for="outfit-item">Item Worn</label>
+                    <input type="text" id="outfit-item" placeholder="Item Name" required>
+                </div>
+                <div class="form-group">
+                    <label for="outfit-date">Date Worn</label>
+                    <input type="date" id="outfit-date" required>
+                </div>
+                <button type="submit">Log Outfit</button>
+            </form>
+        </section>
+        
+    </main>
+</div>
+<script src="scripts.js"></script>
+</body>
+</html>
